@@ -1,0 +1,5 @@
+# GENERATED from ../course.yml by _tools/course_config.py. Do not edit; run `generate`.
+repo:
+  org: devomh
+  name: mate4031-2027
+  branch: main

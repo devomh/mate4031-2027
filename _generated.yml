@@ -1,0 +1,4 @@
+# GENERATED from ../course.yml by _tools/course_config.py. Do not edit; run `generate`.
+lang: es
+website:
+  title: MATE 4031 — Álgebra Lineal

@@ -1,0 +1,3 @@
+/* SVG marks carry no intrinsic display size, so Quarto renders them at full
+   viewBox height and push the search box and nav below the fold (delivery spec §9.4). */
+.sidebar-logo { max-height: 72px; width: auto; margin-top: 0.75rem; margin-bottom: 0.25rem; }

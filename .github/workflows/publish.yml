@@ -1,0 +1,37 @@
+# Public course repo: render the course tree at the repo root and deploy to GitHub Pages.
+# Copied into each public repo as .github/workflows/publish.yml by /course-init (ported from
+# the 2026 skeleton, decision 2026/0018 held by 0001). No Python: pages never execute code.
+name: Publish Quarto site
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          # Same version as the authoring machine (owner, 2026-11-20, B2 plan Q2). The
+          # environment check compares the two before every publish (decision 0006).
+          version: 1.10.18
+      - run: quarto render
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

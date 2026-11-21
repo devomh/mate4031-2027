@@ -1,0 +1,76 @@
+---
+title: "MATE 4031 — Álgebra Lineal"
+subtitle: "Universidad de Puerto Rico en Humacao · Departamento de Matemáticas"
+toc: false
+---
+
+El álgebra lineal es el lenguaje matemático del análisis de datos. Este curso empieza con los
+vectores y las matrices como forma de representar datos, sigue con los sistemas de ecuaciones,
+los subespacios y las transformaciones lineales, y llega a la ortogonalidad y los mínimos
+cuadrados, los valores y vectores propios y la descomposición en valores singulares (SVD), la
+base del análisis de componentes principales (PCA).
+
+Aquí todo se ejecuta. Cada número, tabla y figura de estas páginas salió de ejecutar el código
+que aparece junto a él.
+
+::: {.callout-tip}
+## Empieza aquí
+
+Comienza por la primera lección de la Unidad I:
+[Los datos como vectores](u01_vectores/l01_concept_vectores_datos.qmd). Lee su página de
+conceptos y, después, abre su [laboratorio](u01_vectores/l01_lab_vectores_datos.md), que se
+ejecuta en el navegador sin instalar nada.
+:::
+
+## Cómo funciona el curso
+
+- **Las páginas de conceptos** presentan cada idea con su definición, sus demostraciones y
+  ejemplos resueltos. Empieza por ellas en cada lección.
+- **Las páginas de ejercicios** ofrecen más ejercicios de los mismos procedimientos, resueltos
+  paso a paso, con la solución a un clic.
+- **Los laboratorios** son cuadernos que abres en Google Colab y ejecutas tú: verifican e
+  ilustran con Python (NumPy y Matplotlib) lo que se deriva a mano.
+
+## Contenido del curso
+
+| Unidad | Qué harás |
+|---|---|
+| [I. Vectores, normas y datos](u01_vectores/l01_concept_vectores_datos.qmd) | Representar datos como vectores; normas, distancias y similitud coseno; demostrar las desigualdades de Cauchy-Schwarz y triangular |
+| II. Matrices y sistemas de ecuaciones lineales | Resolver sistemas por eliminación gaussiana; la inversa y las matrices invertibles; la factorización LU |
+| III. Subespacios, bases y rango | Subespacios, independencia lineal, bases y dimensión; el teorema de rango y nulidad; variables redundantes en una matriz de datos |
+| IV. Transformaciones lineales y geometría | Rotaciones, reflexiones, escalas y proyecciones; cambio de base; el determinante como factor de cambio de volumen |
+| V. Ortogonalidad, proyecciones y mínimos cuadrados | Proyecciones, Gram-Schmidt y QR; la regresión lineal como proyección; el número de condición |
+| VI. Valores y vectores propios | Diagonalización, cadenas de Markov y PageRank; el teorema espectral y la matriz de covarianza |
+| VII. SVD y reducción de dimensionalidad | Aproximación de bajo rango; compresión de imágenes; el PCA a partir de la SVD |
+
+## Cómo usar los laboratorios
+
+Los laboratorios son cuadernos de Jupyter pensados para **Google Colab**: gratis, en el
+navegador y sin instalar nada. Cada página de laboratorio tiene arriba un botón *Open in Colab*;
+haz clic y el cuaderno se abre listo para ejecutarse.
+
+- **Ejecuta primero la preparación.** Cada laboratorio empieza con una celda que importa las
+  bibliotecas y carga los datos; si al laboratorio le hace falta algo que Colab no trae, una
+  celda anterior lo instala. Colab se reinicia entre sesiones, así que ejecútalas cada vez que
+  abras un laboratorio.
+- **Guarda tu propia copia.** El botón abre el cuaderno del curso en modo de lectura. Usa
+  *Archivo · Guardar una copia en Drive* antes de trabajar, o perderás tus cambios al cerrar.
+- **Las páginas de laboratorio de este sitio son de solo lectura.** Muestran el código junto
+  con el resultado que produjo; se aprende ejecutándolo.
+
+## Qué podrás hacer
+
+Al terminar el curso podrás:
+
+1. razonar con rigor sobre vectores, matrices, espacios vectoriales y transformaciones
+   lineales;
+2. aplicar esas estructuras, a mano y con Python, para representar, aproximar y analizar datos.
+
+## Cómo se evalúa
+
+| | |
+|---|---|
+| **Exámenes parciales** | Al menos tres. Cada uno tiene una parte en el salón, resuelta a mano, y una parte computacional para el hogar. |
+| **Asignaciones** | Cuadernos computacionales para el hogar, que preparan para los exámenes. Se puede pedir una presentación oral del trabajo sometido. |
+
+Los pesos de cada componente se anuncian al comienzo del semestre.

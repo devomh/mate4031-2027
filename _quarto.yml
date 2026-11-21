@@ -1,0 +1,37 @@
+project:
+  type: website
+  render:            # a lab's .md and its .ipynb would both become the same page (B2 piece 5)
+    - "**/*.qmd"
+    - "**/*.md"
+    - "!**/*.ipynb"
+metadata-files:
+  - _generated.yml   # lang + site title, GENERATED from ../course.yml (decision 0003)
+website:
+  favicon: assets/cdat-owl.svg
+  page-navigation: true
+  sidebar:
+    style: docked
+    search: true
+    logo: assets/cdat-owl.svg
+    logo-alt: "Logo del programa de Ciencia de Datos"
+    title: "MATE 4031"
+    alignment: center
+    collapse-level: 1
+    contents: auto
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    mermaid:
+      theme: neutral
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap
+    html-math-method: katex
+    include-after-body: assets/diagram-zoom.html
+    filters:
+      - assets/drop-title-heading.lua
+      - assets/exercise-blocks.lua
+execute:
+  freeze: auto

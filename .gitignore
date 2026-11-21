@@ -1,0 +1,7 @@
+# Public course repo: build outputs never belong in it (GitHub Actions renders the site).
+# Installed as .gitignore by _tools/deliver.py (B2 piece 5); the sync never touches it.
+/_site/
+/.quarto/
+**/*.quarto_ipynb
+__pycache__/
+.ipynb_checkpoints/

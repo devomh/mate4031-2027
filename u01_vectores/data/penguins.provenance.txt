@@ -1,0 +1,12 @@
+penguins.csv - Palmer penguins (the course's one copy; continuity map, MATE 4031)
+
+Source:   https://raw.githubusercontent.com/allisonhorst/palmerpenguins/main/inst/extdata/penguins.csv
+Package:  palmerpenguins (Allison Horst, Alison Hill, Kristen Gorman), file last changed at
+          commit 156daa430183 (2020-07-15)
+Data:     Gorman KB, Williams TD, Fraser WR (2014). Ecological sexual dimorphism and environmental
+          variability within a community of Antarctic penguins (genus Pygoscelis). PLoS ONE
+          9(3): e90081. Palmer Station Antarctica LTER.
+License:  CC0 1.0 Universal (public domain dedication)
+Copied:   2026-11-20, unchanged: 344 rows, 8 columns, 15241 bytes,
+          SHA-256 f204db2c753b0937caac3cb35258562c14f073e4bbc76be24b4c51ce22767a93
+Used by:  L01 (first use). Later labs load this same file from the course's public repository.
