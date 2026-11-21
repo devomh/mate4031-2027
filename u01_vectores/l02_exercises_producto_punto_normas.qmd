@@ -1,0 +1,393 @@
+---
+title: "Producto punto, normas y distancias: ejercicios"
+unit: "I"
+lesson: 2
+type: exercises
+tags: [producto punto, normas, distancia, demostraciones]
+difficulty: introductory
+---
+
+# Producto punto, normas y distancias: ejercicios
+
+> **Página de conceptos:** [Producto punto, normas y distancias](l02_concept_producto_punto_normas.qmd). Léela primero.
+
+El producto punto (*dot product*) multiplica componente a componente y **suma**; una norma
+(*norm*) mide un vector; la distancia (*distance*) entre dos vectores es la norma de su
+diferencia. Intenta cada ejercicio antes de abrir la solución.
+
+## Producto punto
+
+#### Ejercicio 1 (Básico)
+
+Sean $\mathbf{u} = (2, -3)$ y $\mathbf{v} = (4, 1)$. Calcula $\mathbf{u} \cdot \mathbf{v}$ y
+$\|\mathbf{u}\|$, usando que $\|\mathbf{u}\|^2 = \mathbf{u} \cdot \mathbf{u}$.
+
+::: {.solucion}
+**Respuesta:** $\mathbf{u} \cdot \mathbf{v} = 5$ y $\|\mathbf{u}\| = \sqrt{13}$.
+
+El producto punto multiplica las componentes que se corresponden y suma:
+
+$$
+\begin{aligned}
+2(4) + (-3)(1) &= 8 - 3 \\
+&= 5
+\end{aligned}
+$$
+
+Para la norma, primero $\mathbf{u} \cdot \mathbf{u}$, que es la norma al cuadrado:
+
+$$
+\begin{aligned}
+2(2) + (-3)(-3) &= 4 + 9 \\
+&= 13
+\end{aligned}
+$$
+
+La norma es la raíz: $\|\mathbf{u}\| = \sqrt{13} \approx 3.61$. El resultado del producto punto
+es un número, no un vector.
+:::
+
+#### Ejercicio 2 (Intermedio)
+
+Halla el número $k$ tal que $(k, 2, -1) \cdot (3, k, 4) = 6$.
+
+::: {.solucion}
+**Respuesta:** $k = 2$
+
+El producto punto, escrito con $k$, es $3k + 2k + (-1)(4)$. La ecuación se resuelve como
+cualquier ecuación lineal:
+
+$$
+\begin{aligned}
+3k + 2k - 4 &= 6 \\
+5k &= 10 \\
+k &= 2
+\end{aligned}
+$$
+
+Comprobación: $(2, 2, -1) \cdot (3, 2, 4) = 6 + 4 - 4 = 6$.
+:::
+
+#### Ejercicio 3 (Avanzado)
+
+Sean $\mathbf{p} = (1, 0, -1, 2)$ y $\mathbf{q} = (3, 5, 2, -1)$ en $\mathbb{R}^4$. Calcula
+$\mathbf{p} \cdot \mathbf{q}$ y $\|\mathbf{p}\|^2$.
+
+::: {.solucion title="Pista"}
+Son cuatro productos; el que lleva el $0$ no aporta nada. Para $\|\mathbf{p}\|^2$ no hace falta
+ninguna raíz: es $\mathbf{p} \cdot \mathbf{p}$.
+:::
+
+::: {.solucion}
+**Respuesta:** $\mathbf{p} \cdot \mathbf{q} = -1$ y $\|\mathbf{p}\|^2 = 6$.
+:::
+
+## Normas y distancias
+
+#### Ejercicio 4 (Básico)
+
+Calcula las normas $\ell_1$, $\ell_2$ y $\ell_\infty$ de $\mathbf{w} = (-6, 8)$.
+
+::: {.solucion}
+**Respuesta:** $\|\mathbf{w}\|_1 = 14$, $\|\mathbf{w}\|_2 = 10$ y $\|\mathbf{w}\|_\infty = 8$.
+
+La norma $\ell_1$ suma los valores absolutos:
+
+$$
+\begin{aligned}
+|-6| + |8| &= 6 + 8 \\
+&= 14
+\end{aligned}
+$$
+
+La norma $\ell_2$ es la raíz de la suma de los cuadrados:
+
+$$
+\begin{aligned}
+\sqrt{(-6)^2 + 8^2} &= \sqrt{36 + 64} \\
+&= \sqrt{100} \\
+&= 10
+\end{aligned}
+$$
+
+La norma $\ell_\infty$ es el mayor valor absoluto: entre $6$ y $8$, es $8$. Como siempre,
+$8 \le 10 \le 14$.
+:::
+
+#### Ejercicio 5 (Intermedio)
+
+Sean $\mathbf{p} = (2, -1, 3)$ y $\mathbf{q} = (0, 1, 4)$. Calcula las distancias $\ell_1$,
+$\ell_2$ y $\ell_\infty$ entre $\mathbf{p}$ y $\mathbf{q}$, y normaliza (*normalize*) el
+vector $\mathbf{p} - \mathbf{q}$.
+
+::: {.solucion}
+**Respuesta:** las distancias son $5$ ($\ell_1$), $3$ ($\ell_2$) y $2$ ($\ell_\infty$); el
+vector normalizado es $\left(\frac{2}{3}, -\frac{2}{3}, -\frac{1}{3}\right)$.
+
+Primero la diferencia, componente a componente:
+
+$$
+\begin{aligned}
+(2, -1, 3) - (0, 1, 4) &= (2, -2, -1)
+\end{aligned}
+$$
+
+Las tres normas de esa diferencia:
+
+$$
+\begin{aligned}
+2 + 2 + 1 &= 5 && \text{norma } \ell_1
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\sqrt{2^2 + (-2)^2 + (-1)^2} &= \sqrt{9} \\
+&= 3
+\end{aligned}
+$$
+
+y la norma $\ell_\infty$ es el mayor valor absoluto, $2$. Para normalizar se divide entre la
+norma $\ell_2$, que es $3$:
+
+$$
+\begin{aligned}
+\frac{1}{3}(2, -2, -1) &= \left(\frac{2}{3}, -\frac{2}{3}, -\frac{1}{3}\right)
+\end{aligned}
+$$
+:::
+
+#### Ejercicio 6 (Avanzado)
+
+Halla el vector de norma $15$ que tiene la misma dirección que $(1, 2, 2)$.
+
+::: {.solucion title="Pista"}
+Normaliza $(1, 2, 2)$ para obtener un vector unitario (*unit vector*) en esa dirección, y multiplícalo por $15$:
+por la homogeneidad, su norma queda $15 \cdot 1$.
+:::
+
+::: {.solucion}
+**Respuesta:** $15 \cdot \frac{1}{3}(1, 2, 2) = (5, 10, 10)$
+:::
+
+## Demostraciones
+
+#### Ejercicio 7 (Básico)
+
+Demuestra, a partir de la definición, que para $\mathbf{u}, \mathbf{v}, \mathbf{w}$ de
+$\mathbb{R}^n$: (a) $\mathbf{u} \cdot \mathbf{v} = \mathbf{v} \cdot \mathbf{u}$; (b)
+$\mathbf{u} \cdot (\mathbf{v} + \mathbf{w}) = \mathbf{u} \cdot \mathbf{v} + \mathbf{u} \cdot \mathbf{w}$.
+
+::: {.solucion title="Demostración"}
+**(a)** Por la definición, $\mathbf{u} \cdot \mathbf{v} = u_1 v_1 + \cdots + u_n v_n$ y
+$\mathbf{v} \cdot \mathbf{u} = v_1 u_1 + \cdots + v_n u_n$. Cada término $u_i v_i$ es igual a
+$v_i u_i$, porque el producto de números reales es conmutativo. Las dos sumas tienen los mismos
+términos, así que son iguales.
+
+**(b)** La componente $i$ de $\mathbf{v} + \mathbf{w}$ es $v_i + w_i$. Entonces
+
+$$
+\begin{aligned}
+\mathbf{u} \cdot (\mathbf{v} + \mathbf{w}) &= u_1 (v_1 + w_1) + \cdots + u_n (v_n + w_n) \\
+&= (u_1 v_1 + \cdots + u_n v_n) + (u_1 w_1 + \cdots + u_n w_n),
+\end{aligned}
+$$
+
+donde se distribuyó cada $u_i$ y se agruparon los términos. Los dos paréntesis son
+$\mathbf{u} \cdot \mathbf{v}$ y $\mathbf{u} \cdot \mathbf{w}$. $\blacksquare$
+:::
+
+#### Ejercicio 8 (Intermedio)
+
+Demuestra que $\|c\,\mathbf{v}\|_1 = |c|\,\|\mathbf{v}\|_1$ para todo escalar $c$ y todo
+$\mathbf{v}$ de $\mathbb{R}^n$.
+
+::: {.solucion title="Pista"}
+La componente $i$ de $c\,\mathbf{v}$ es $c\,v_i$, y para números reales $|c\,v_i| = |c|\,|v_i|$.
+:::
+
+::: {.solucion title="Demostración"}
+Por la definición de la norma $\ell_1$ y la pista,
+
+$$
+\begin{aligned}
+\|c\,\mathbf{v}\|_1 &= |c\,v_1| + \cdots + |c\,v_n| \\
+&= |c|\,|v_1| + \cdots + |c|\,|v_n| \\
+&= |c|\,(|v_1| + \cdots + |v_n|) \\
+&= |c|\,\|\mathbf{v}\|_1 ,
+\end{aligned}
+$$
+
+donde en el penúltimo paso se sacó el factor común $|c|$. $\blacksquare$
+:::
+
+#### Ejercicio 9 (Avanzado)
+
+Demuestra la desigualdad triangular (*triangle inequality*) para la norma $\ell_1$:
+$\|\mathbf{u} + \mathbf{v}\|_1 \le \|\mathbf{u}\|_1 + \|\mathbf{v}\|_1$.
+
+::: {.solucion title="Pista"}
+Usa la desigualdad triangular para números reales, $|a + b| \le |a| + |b|$, en cada
+componente, y suma las $n$ desigualdades.
+:::
+
+::: {.solucion title="Demostración"}
+Para cada $i$, la desigualdad para números reales da $|u_i + v_i| \le |u_i| + |v_i|$. Sumando
+las $n$ desigualdades (sumar desigualdades del mismo sentido conserva el sentido):
+
+$$
+|u_1 + v_1| + \cdots + |u_n + v_n| \le (|u_1| + \cdots + |u_n|) + (|v_1| + \cdots + |v_n|).
+$$
+
+El lado izquierdo es $\|\mathbf{u} + \mathbf{v}\|_1$, porque la componente $i$ de
+$\mathbf{u} + \mathbf{v}$ es $u_i + v_i$; los paréntesis de la derecha son
+$\|\mathbf{u}\|_1$ y $\|\mathbf{v}\|_1$. $\blacksquare$
+
+Para la norma $\ell_2$ este argumento no basta, porque la raíz de una suma de cuadrados no se
+separa componente a componente. Esa demostración, con la desigualdad de Cauchy-Schwarz, es de
+la L03.
+:::
+
+## ¿Qué norma responde la pregunta?
+
+#### Ejercicio 10 (Básico)
+
+En un tablero de ajedrez, el rey se mueve una casilla en cualquier dirección, también en
+diagonal. ¿Cuántos movimientos necesita, como mínimo, para ir de la casilla $(1, 1)$ a la
+$(5, 3)$? ¿Qué norma de la diferencia $(4, 2)$ es esa? ¿Y qué norma daría la respuesta si el
+rey solo pudiera moverse en horizontal y en vertical?
+
+::: {.solucion}
+**Respuesta:** 4 movimientos, la norma $\ell_\infty$ de $(4, 2)$; sin diagonales serían 6, la
+norma $\ell_1$.
+
+Cada movimiento en diagonal avanza una casilla en las dos coordenadas a la vez. El rey hace 2
+movimientos en diagonal, que cubren las 2 casillas verticales, y 2 horizontales más: $4$
+movimientos, $\max(4, 2)$. Sin diagonales tiene que recorrer las $4 + 2 = 6$ casillas por
+separado, como un taxi por calles en cuadrícula.
+:::
+
+#### Ejercicio 11 (Intermedio)
+
+Dos estaciones meteorológicas anotaron la temperatura máxima, en grados Celsius, de los mismos siete días:
+
+| Día | 1 | 2 | 3 | 4 | 5 | 6 | 7 |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Estación A | 31 | 30 | 32 | 29 | 31 | 33 | 30 |
+| Estación B | 30 | 31 | 31 | 29 | 30 | 23 | 30 |
+
+Calcula la diferencia $\mathbf{d} = \mathbf{A} - \mathbf{B}$ y sus normas $\ell_1$, $\ell_2$ y
+$\ell_\infty$. Después contesta: (a) ¿qué norma responde "en total, cuántos grados difirieron las
+estaciones"? (b) ¿Y "cuál fue la peor diferencia de un día"? (c) El día 6, con 10 grados de
+diferencia, ¿qué parte de $\|\mathbf{d}\|_2^2$ aporta? (d) Una estación C marca siempre 3 grados menos que
+A: $(28, 27, 29, 26, 28, 30, 27)$. ¿Cuál estación, B o C, se parece más a A según cada norma?
+Si las estaciones se usan para un pronóstico y un error fijo de 3 grados se puede corregir, pero
+un día con 10 grados de error no, ¿qué norma conviene y cuál estación escogerías?
+
+::: {.solucion}
+**Respuesta:** $\mathbf{d} = (1, -1, 1, 0, 1, 10, 0)$, con $\|\mathbf{d}\|_1 = 14$,
+$\|\mathbf{d}\|_2 = \sqrt{104} \approx 10.20$ y $\|\mathbf{d}\|_\infty = 10$. (a) $\ell_1$; (b)
+$\ell_\infty$; (c) $100$ de $104$, cerca del 96%; (d) $\ell_1$ escoge B, y $\ell_2$ y
+$\ell_\infty$ escogen C; para el pronóstico, $\ell_\infty$ y la estación C.
+
+La norma $\ell_1$ suma los valores absolutos:
+
+$$
+\begin{aligned}
+1 + 1 + 1 + 0 + 1 + 10 + 0 &= 14
+\end{aligned}
+$$
+
+La norma $\ell_2$:
+
+$$
+\begin{aligned}
+\sqrt{1 + 1 + 1 + 0 + 1 + 100 + 0} &= \sqrt{104} \\
+&\approx 10.20
+\end{aligned}
+$$
+
+La norma $\ell_\infty$ es el mayor valor absoluto, $10$ (el día 6).
+
+**(a)** La diferencia total es la suma de las diferencias de cada día: la norma $\ell_1$, 14
+grados.
+
+**(b)** La peor diferencia de un día es la norma $\ell_\infty$: 10 grados.
+
+**(c)** En $\|\mathbf{d}\|_2^2 = 104$, el día 6 aporta $10^2 = 100$, cerca del 96%: al elevar al cuadrado,
+la norma $\ell_2$ queda decidida casi solo por el día atípico. Por eso $\|\mathbf{d}\|_2$
+(10.20) está tan cerca de $\|\mathbf{d}\|_\infty$ (10). Es lo mismo que pasaba con la masa de los
+pingüinos: en $\ell_2$, la componente con la diferencia más grande decide.
+
+**(d)** La diferencia con C es $\mathbf{A} - \mathbf{C} = (3, 3, 3, 3, 3, 3, 3)$. Sus normas:
+
+$$
+\begin{aligned}
+3 + 3 + 3 + 3 + 3 + 3 + 3 &= 21 && \text{norma } \ell_1
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\sqrt{9 + 9 + 9 + 9 + 9 + 9 + 9} &= \sqrt{63} \\
+&\approx 7.94
+\end{aligned}
+$$
+
+y la norma $\ell_\infty$ es $3$. Con $\ell_1$, B está más cerca de A ($14 < 21$); con $\ell_2$
+($10.20 > 7.94$) y con $\ell_\infty$ ($10 > 3$), C está más cerca. Las normas no están de
+acuerdo, así que hay que escoger. Para el pronóstico, un error fijo se corrige restando 3, y un
+día con 10 grados de error es justo lo que no se puede tolerar: la pregunta es "¿cuál fue la
+peor diferencia?", la norma $\ell_\infty$, y la estación que conviene es C. La norma $\ell_1$
+llevaría a escoger B, porque sus muchos días casi iguales compensan el día malo.
+:::
+
+## Casos especiales y errores comunes
+
+**El producto punto es un número.** $(2, -3) \cdot (4, 1)$ no es el vector $(8, -3)$: los
+productos de las componentes se **suman**, y el resultado es $5$.
+
+::: {.error-comun}
+Calcular $\|\mathbf{u} + \mathbf{v}\|$ como $\|\mathbf{u}\| + \|\mathbf{v}\|$. Con
+$\mathbf{u} = (3, 4)$ y $\mathbf{v} = (2, -1)$, la suma es $(5, 3)$:
+
+$$
+\begin{aligned}
+\sqrt{5^2 + 3^2} &= 5 + \sqrt{5} && \text{Incorrecto: se sumaron las normas en vez de medir la suma}
+\end{aligned}
+$$
+
+Lo correcto es $\|(5, 3)\| = \sqrt{34} \approx 5.83$, menor que $5 + \sqrt{5} \approx 7.24$: la
+desigualdad triangular solo dice que no puede ser mayor.
+:::
+
+::: {.error-comun}
+Olvidar la raíz en la norma $\ell_2$ de $(-6, 8)$:
+
+$$
+\begin{aligned}
+\sqrt{(-6)^2 + 8^2} &= 100 && \text{Incorrecto: 100 es la suma de los cuadrados, falta la raíz}
+\end{aligned}
+$$
+
+La norma es $\sqrt{100} = 10$; el $100$ es $\|\mathbf{w}\|^2$.
+:::
+
+::: {.error-comun}
+Sacar un escalar negativo con su signo. Para $\mathbf{v} = (3, 4)$, el vector $-2\mathbf{v}$ es
+$(-6, -8)$:
+
+$$
+\begin{aligned}
+\sqrt{(-6)^2 + (-8)^2} &= -2(5) && \text{Incorrecto: el escalar sale con valor absoluto, |-2| = 2}
+\end{aligned}
+$$
+
+La norma es $10 = |-2| \cdot 5$. Una norma nunca es negativa.
+:::
+
+**La norma $\ell_\infty$ con componentes negativas.** Para $(-9, 2, 5)$, la norma $\ell_\infty$
+es $9$, el mayor **valor absoluto**, no $5$, el mayor valor con signo.
+
+**Vectores de dimensiones distintas.** $(1, 2) \cdot (3, 4, 5)$ no está definido, igual que la
+suma de la L01: falta un factor para el $5$.
