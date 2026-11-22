@@ -1,0 +1,42 @@
+/* guided-exercise.css: the guided mode of an exercise (decision 0026). Master copy in
+   _design/assets/; guided-exercise.lua inlines it on pages that use the block. */
+.guiado { border: 1px solid #dee2e6; border-left: 5px solid #2780e3; border-radius: .25rem;
+  margin: 1rem 0; padding: .2rem .8rem .4rem; }
+.guiado-titulo { font-weight: 600; margin: .3rem 0 .4rem; color: #2780e3; }
+.guiado-acciones { margin: .4rem 0 .2rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+.guiado-acciones button, .guiado .opcion { font: inherit; border: 1px solid #adb5bd;
+  border-radius: .25rem; background: #f8f9fa; padding: .2rem .7rem; cursor: pointer; }
+.guiado-acciones button:hover, .guiado .opcion:hover:not(:disabled) { background: #e9ecef; }
+.guiado button:focus-visible, .guiado input:focus-visible { outline: 2px solid #2780e3;
+  outline-offset: 2px; }
+.guiado-abrir.sugerido { border-color: #2780e3; background: #e7f1fc; }
+.guiado-retro { margin: .2rem 0 .4rem; min-height: 1.2em; }
+.guiado-retro.bien { color: #2b7a0b; }
+.guiado-retro.mal { color: #b02a37; }
+.guiado-pasos { margin: .6rem 0 0; padding-left: 1.6rem; }
+.guiado-paso { margin-bottom: .6rem; }
+.guiado .cerrado { display: none; }
+.casilla { display: inline-flex; align-items: baseline; gap: .2rem; }
+.casilla input { width: 7em; font: inherit; padding: .05rem .3rem; border: 1px solid #adb5bd;
+  border-radius: .2rem; }
+.casilla.bien input { border-color: #3fb618; background: #ecf8e8; }
+.casilla.mal input { border-color: #ff0039; }
+.casilla-valor { display: none; }
+.casilla.revelado input { display: none; }
+.casilla.revelado .casilla-valor { display: inline; padding: 0 .3rem; background: #fff3cd;
+  border-radius: .2rem; }
+.opciones { display: flex; flex-direction: column; gap: .3rem; margin: .3rem 0; }
+.guiado .opcion { text-align: left; }
+.guiado .opcion:disabled { cursor: default; color: inherit; }
+.guiado .opcion.bien { border-color: #3fb618; background: #ecf8e8; }
+.guiado .opcion.mal { border-color: #ff0039; background: #fdecee; }
+.guiado .opcion.revelado { border-color: #3fb618; background: #fff3cd; }
+.opcion-retro { display: none; margin: .1rem 0 .3rem 1rem; font-size: .95em; }
+.opcion-retro > :last-child { margin-bottom: 0; }
+.opcion-fila.visto .opcion-retro { display: block; }
+/* every step and value open: the visual check (screenshot.py) sets it */
+.guiado.guiado-todo .cerrado { display: block; }
+.guiado.guiado-todo li.cerrado { display: list-item; }
+.guiado.guiado-todo .casilla-valor { display: inline; padding: 0 .3rem; background: #fff3cd; }
+.guiado.guiado-todo .opcion[data-ok] { border-color: #3fb618; }
+.guiado.guiado-todo .opcion-retro { display: block; }

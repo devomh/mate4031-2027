@@ -34,5 +34,6 @@ format:
       - assets/drop-title-heading.lua
       - assets/exercise-blocks.lua
       - assets/lab-figures.lua
+      - assets/guided-exercise.lua
 execute:
   freeze: auto

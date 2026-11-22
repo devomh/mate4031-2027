@@ -1,0 +1,614 @@
+---
+title: "Ángulo, similitud coseno y desigualdades: ejercicios"
+unit: "I"
+lesson: 3
+type: exercises
+tags: [ángulo, similitud coseno, proyección, Cauchy-Schwarz, desigualdad triangular, demostraciones]
+difficulty: introductory
+---
+
+# Ángulo, similitud coseno y desigualdades: ejercicios
+
+> **Página de conceptos:** [Ángulo, similitud coseno y las desigualdades de Cauchy-Schwarz y triangular](l03_concept_angulo_coseno.qmd). Léela primero.
+
+El ángulo (*angle*) entre dos vectores no nulos cumple
+$\cos\theta = \mathbf{u} \cdot \mathbf{v} / (\|\mathbf{u}\|\,\|\mathbf{v}\|)$; la similitud
+coseno (*cosine similarity*) es ese coseno. Intenta cada ejercicio antes de abrir la solución.
+Tres ejercicios tienen un recuadro **Inténtalo**: escribe tu respuesta y, si no sale, pide el
+**paso a paso**, que te lleva por la solución un paso a la vez.
+
+## Ángulos
+
+#### Ejercicio 1 (Básico)
+
+Halla el ángulo entre $\mathbf{u} = (1, 2, 2)$ y $\mathbf{v} = (2, -1, 2)$, en grados, con un
+decimal.
+
+::: {.guiado}
+El ángulo, en grados: $\theta \approx$ [$\theta \approx 63.6^\circ$]{.casilla}
+
+::: {.paso}
+El producto punto: $\mathbf{u} \cdot \mathbf{v} =$ [$4$]{.casilla}
+:::
+
+::: {.paso}
+Las normas: $\|\mathbf{u}\| =$ [$3$]{.casilla} y $\|\mathbf{v}\| =$ [$3$]{.casilla}
+:::
+
+::: {.paso}
+El coseno, con dos decimales o como fracción: $\cos\theta =$ [$\frac{4}{9} \approx 0.444$]{.casilla decimales="2"}
+:::
+
+::: {.paso}
+`np.arccos(4/9)`, o la calculadora en radianes, da $1.11$. Ese número es
+
+- $1.11^\circ$, el ángulo en grados
+
+  `np.arccos` y la calculadora en radianes dan radianes: un ángulo de $1.11^\circ$ sería casi cero, y el coseno sería casi 1, no $0.444$.
+- [el ángulo en radianes]{.correcta}
+- el coseno del ángulo
+
+  El coseno es $\frac{4}{9} \approx 0.444$, del paso anterior; $\arccos$ devuelve el ángulo.
+:::
+
+::: {.paso}
+El ángulo, en grados: $\theta = \arccos\frac{4}{9} \approx$ [$\theta \approx 63.6^\circ$]{.casilla}
+:::
+:::
+
+::: {.solucion}
+**Respuesta:** $\theta \approx 63.6^\circ$
+
+$$
+\begin{aligned}
+\mathbf{u} \cdot \mathbf{v} &= 1(2) + 2(-1) + 2(2) \\
+&= 4
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\|\mathbf{u}\| &= \sqrt{1^{2} + 2^{2} + 2^{2}} \\
+&= 3
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\|\mathbf{v}\| &= \sqrt{2^{2} + (-1)^{2} + 2^{2}} \\
+&= 3
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\cos\theta &= \frac{4}{3 \cdot 3} \\
+&= \frac{4}{9} \\
+&\approx 0.444
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\theta &= \arccos\left(\frac{4}{9}\right) \\
+&\approx 63.6^\circ
+\end{aligned}
+$$
+
+El producto punto es positivo, así que el ángulo es agudo, como salió. `np.arccos` da el ángulo
+en radianes, $1.11$; en grados es $1.11 \cdot \frac{180}{\pi} \approx 63.6^\circ$.
+:::
+
+#### Ejercicio 2 (Básico)
+
+Sin calcular ningún ángulo, di si es agudo, recto u obtuso:
+
+- **(a)** entre $(1, -2, 3)$ y $(4, 5, 2)$;
+- **(b)** entre $(2, 3)$ y $(-1, -1)$;
+- **(c)** entre $(1, 1, 1, 1)$ y $(2, 0, -1, 0)$.
+
+::: {.solucion}
+**Respuesta:** (a) recto; (b) obtuso; (c) agudo.
+
+Basta el signo del producto punto:
+
+$$
+\begin{aligned}
+1(4) + (-2)(5) + 3(2) &= 4 - 10 + 6 \\
+&= 0
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+2(-1) + 3(-1) &= -5
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+1(2) + 1(0) + 1(-1) + 1(0) &= 1
+\end{aligned}
+$$
+
+Cero: recto (los vectores de (a) son ortogonales). Negativo: obtuso. Positivo: agudo.
+:::
+
+#### Ejercicio 3 (Intermedio)
+
+Halla los valores de $k$ para los que $(k, -2, 1)$ y $(k, 3, 2)$ son ortogonales
+(*orthogonal*).
+
+::: {.solucion}
+**Respuesta:** $k = 2$ o $k = -2$
+
+Ortogonales quiere decir producto punto cero:
+
+$$
+\begin{aligned}
+k^{2} - 6 + 2 &= 0 \\
+k^{2} &= 4 \\
+k = 2 \quad &\text{o} \quad k = -2
+\end{aligned}
+$$
+
+Comprobación con $k = -2$: $(-2)(-2) + (-2)(3) + 1(2) = 4 - 6 + 2 = 0$.
+:::
+
+#### Ejercicio 4 (Avanzado)
+
+Demuestra que si $\|\mathbf{u}\| = \|\mathbf{v}\|$, entonces $\mathbf{u} + \mathbf{v}$ y
+$\mathbf{u} - \mathbf{v}$ son ortogonales. En el plano, ¿qué dice esto de las diagonales de un
+rombo?
+
+::: {.solucion title="Pista"}
+Desarrolla $(\mathbf{u} + \mathbf{v}) \cdot (\mathbf{u} - \mathbf{v})$ con la propiedad
+distributiva, como en el Ejercicio 3 de la L02.
+:::
+
+::: {.solucion}
+**Respuesta:** el producto punto de $\mathbf{u} + \mathbf{v}$ y $\mathbf{u} - \mathbf{v}$ es la diferencia de los cuadrados de las normas, cero cuando las normas son iguales; las diagonales de un rombo son perpendiculares.
+
+$$
+\begin{aligned}
+(\mathbf{u} + \mathbf{v}) \cdot (\mathbf{u} - \mathbf{v}) &= \mathbf{u} \cdot \mathbf{u} - \mathbf{u} \cdot \mathbf{v} + \mathbf{v} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} && \text{distributiva, dos veces} \\
+&= \mathbf{u} \cdot \mathbf{u} - \mathbf{v} \cdot \mathbf{v} && \text{simétrica}
+\end{aligned}
+$$
+
+Como $\mathbf{u} \cdot \mathbf{u} = \|\mathbf{u}\|^2$ y $\mathbf{v} \cdot \mathbf{v} =
+\|\mathbf{v}\|^2$, el resultado es $\|\mathbf{u}\|^2 - \|\mathbf{v}\|^2$, que vale 0 cuando las
+normas son iguales. En un rombo, dos lados que salen de un vértice son $\mathbf{u}$ y
+$\mathbf{v}$ con la misma longitud, y sus diagonales son $\mathbf{u} + \mathbf{v}$ y
+$\mathbf{u} - \mathbf{v}$: son perpendiculares. La demostración no usa componentes, así que vale
+en cualquier $\mathbb{R}^n$.
+:::
+
+## Similitud coseno y proyección
+
+#### Ejercicio 5 (Básico)
+
+Con el vocabulario ("gato", "perro", "come", "duerme"), el texto "el gato come y el gato duerme"
+es el vector $\mathbf{x} = (2, 0, 1, 1)$, y "el gato duerme y el perro duerme" es
+$\mathbf{y} = (1, 1, 0, 2)$. Calcula su similitud coseno con dos decimales.
+
+::: {.guiado}
+La similitud coseno: [$\frac{2}{3} \approx 0.667$]{.casilla decimales="2"}
+
+::: {.paso}
+El producto punto: $\mathbf{x} \cdot \mathbf{y} =$ [$4$]{.casilla}
+:::
+
+::: {.paso}
+Las normas, con dos decimales: $\|\mathbf{x}\| =$ [$\sqrt{6} \approx 2.449$]{.casilla decimales="2"} y $\|\mathbf{y}\| =$ [$\sqrt{6} \approx 2.449$]{.casilla decimales="2"}
+:::
+
+::: {.paso}
+La similitud coseno, con dos decimales o como fracción: [$\frac{2}{3} \approx 0.667$]{.casilla decimales="2"}
+:::
+
+::: {.paso}
+Si el segundo texto se escribe dos veces seguidas, su vector es $2\mathbf{y}$. La similitud coseno con $\mathbf{x}$
+
+- se duplica
+
+  El producto punto se duplica, pero la norma de $2\mathbf{y}$ también: el 2 se cancela.
+- [queda igual]{.correcta}
+- se reduce a la mitad
+
+  Escribir el texto dos veces no cambia de qué trata, y el coseno solo mira la dirección.
+:::
+:::
+
+::: {.solucion}
+**Respuesta:** $\frac{2}{3} \approx 0.67$
+
+$$
+\begin{aligned}
+\mathbf{x} \cdot \mathbf{y} &= 2(1) + 0(1) + 1(0) + 1(2) \\
+&= 4
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\|\mathbf{x}\| &= \sqrt{2^{2} + 0^{2} + 1^{2} + 1^{2}} \\
+&= \sqrt{6}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\|\mathbf{y}\| &= \sqrt{1^{2} + 1^{2} + 0^{2} + 2^{2}} \\
+&= \sqrt{6}
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\frac{4}{\sqrt{6}\,\sqrt{6}} &= \frac{4}{6} \\
+&= \frac{2}{3} \\
+&\approx 0.67
+\end{aligned}
+$$
+
+Los textos comparten "gato" y "duerme". Con $2\mathbf{y}$, el producto punto es $8$ y la norma
+$2\sqrt{6}$: la similitud sigue siendo $\frac{8}{\sqrt{6} \cdot 2\sqrt{6}} = \frac{2}{3}$.
+:::
+
+#### Ejercicio 6 (Intermedio)
+
+Proyecta (*project*) $\mathbf{u} = (4, 2)$ sobre la dirección de $\mathbf{v} = (3, 4)$: halla el vector
+unitario $\mathbf{w}$, la componente $\mathbf{u} \cdot \mathbf{w}$ y la proyección $\mathbf{p}$.
+Comprueba que $\mathbf{u} - \mathbf{p}$ es ortogonal a $\mathbf{v}$.
+
+::: {.solucion}
+**Respuesta:** la componente es $4$, $\mathbf{p} = (2.4, 3.2)$ y $\mathbf{u} - \mathbf{p} = (1.6, -1.2)$, ortogonal a $\mathbf{v}$.
+
+La norma de $\mathbf{v}$ es $\sqrt{9 + 16} = 5$, así que
+$\mathbf{w} = \frac{1}{5}(3, 4) = (0.6, 0.8)$. Después, la componente y la proyección:
+
+$$
+\begin{aligned}
+4(0.6) + 2(0.8) &= 2.4 + 1.6 \\
+&= 4
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+4(0.6, 0.8) &= (2.4, 3.2)
+\end{aligned}
+$$
+
+Lo que sobra:
+
+$$
+\begin{aligned}
+(4, 2) - (2.4, 3.2) &= (1.6, -1.2)
+\end{aligned}
+$$
+
+Su producto punto con $\mathbf{v}$ es cero, $1.6(3) + (-1.2)(4) = 4.8 - 4.8 = 0$: lo que
+sobra es perpendicular a la dirección sobre la que se proyectó.
+:::
+
+#### Ejercicio 7 (Avanzado)
+
+Demuestra que, para un escalar $c > 0$, la similitud coseno de $c\,\mathbf{u}$ y $\mathbf{v}$ es
+la de $\mathbf{u}$ y $\mathbf{v}$. ¿Qué pasa si $c < 0$?
+
+::: {.solucion}
+**Respuesta:** con $c > 0$ es la misma; con $c < 0$ cambia de signo (el ángulo pasa a ser $180^\circ - \theta$).
+
+Con las propiedades del producto punto y de la norma (L02):
+
+$$
+\frac{(c\,\mathbf{u}) \cdot \mathbf{v}}{\|c\,\mathbf{u}\|\,\|\mathbf{v}\|}
+= \frac{c\,(\mathbf{u} \cdot \mathbf{v})}{|c|\,\|\mathbf{u}\|\,\|\mathbf{v}\|}
+= \frac{c}{|c|} \cdot \frac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|\,\|\mathbf{v}\|} .
+$$
+
+Si $c > 0$, $c/|c| = 1$ y la similitud no cambia: estirar un vector no cambia su dirección. Si
+$c < 0$, $c/|c| = -1$: el vector $c\,\mathbf{u}$ apunta al revés y el coseno cambia de signo.
+Como $\cos(180^\circ - \theta) = -\cos\theta$, el ángulo nuevo es $180^\circ - \theta$.
+:::
+
+## Demostraciones
+
+#### Ejercicio 8 (Básico)
+
+Comprueba la desigualdad de Cauchy-Schwarz (*Cauchy-Schwarz inequality*) y la desigualdad
+triangular (*triangle inequality*) para los vectores del
+Ejercicio 1, $\mathbf{u} = (1, 2, 2)$ y $\mathbf{v} = (2, -1, 2)$.
+
+::: {.solucion}
+**Respuesta:** $|\mathbf{u} \cdot \mathbf{v}| = 4 \le 9 = \|\mathbf{u}\|\,\|\mathbf{v}\|$ y $\|\mathbf{u} + \mathbf{v}\| = \sqrt{26} \approx 5.10 \le 6 = \|\mathbf{u}\| + \|\mathbf{v}\|$.
+
+Del Ejercicio 1, $\mathbf{u} \cdot \mathbf{v} = 4$ y las dos normas valen 3, así que
+$\|\mathbf{u}\|\,\|\mathbf{v}\| = 9$ y $\|\mathbf{u}\| + \|\mathbf{v}\| = 6$. La suma es
+$\mathbf{u} + \mathbf{v} = (3, 1, 4)$:
+
+$$
+\begin{aligned}
+\|\mathbf{u} + \mathbf{v}\| &= \sqrt{3^{2} + 1^{2} + 4^{2}} \\
+&= \sqrt{26} \\
+&\approx 5.10
+\end{aligned}
+$$
+
+Las dos desigualdades se cumplen, y ninguna es una igualdad: los vectores no son paralelos.
+:::
+
+#### Ejercicio 9 (Avanzado)
+
+Demuestra la desigualdad triangular, $\|\mathbf{u} + \mathbf{v}\| \le \|\mathbf{u}\| +
+\|\mathbf{v}\|$, a partir de la desigualdad de Cauchy-Schwarz. En el recuadro, escoge la razón
+de cada paso.
+
+::: {.guiado title="Escoge la razón de cada paso"}
+::: {.paso}
+$\|\mathbf{u} + \mathbf{v}\|^2 = \|\mathbf{u}\|^2 + 2\,\mathbf{u} \cdot \mathbf{v} + \|\mathbf{v}\|^2$ porque
+
+- es la desigualdad de Cauchy-Schwarz
+
+  Este paso es una igualdad: todavía no se usa ninguna desigualdad.
+- [$\|\mathbf{x}\|^2 = \mathbf{x} \cdot \mathbf{x}$; distributiva y simétrica]{.correcta}
+- la norma de una suma es la suma de las normas
+
+  Eso es falso en general; si fuera cierto, no habría nada que demostrar.
+:::
+
+::: {.paso}
+$\|\mathbf{u}\|^2 + 2\,\mathbf{u} \cdot \mathbf{v} + \|\mathbf{v}\|^2 \le \|\mathbf{u}\|^2 + 2\,\|\mathbf{u}\|\,\|\mathbf{v}\| + \|\mathbf{v}\|^2$ porque
+
+- el producto punto nunca es negativo
+
+  Puede ser negativo, por ejemplo $(1, 0) \cdot (-1, 0) = -1$.
+- es la desigualdad triangular
+
+  Es lo que se quiere demostrar: usarla aquí sería un argumento circular.
+- [Cauchy-Schwarz: $\mathbf{u} \cdot \mathbf{v} \le \|\mathbf{u}\|\,\|\mathbf{v}\|$]{.correcta}
+:::
+
+::: {.paso}
+$\|\mathbf{u}\|^2 + 2\,\|\mathbf{u}\|\,\|\mathbf{v}\| + \|\mathbf{v}\|^2 = (\|\mathbf{u}\| + \|\mathbf{v}\|)^2$ porque
+
+- [$(a + b)^2 = a^2 + 2ab + b^2$]{.correcta}
+- la norma de una suma es la suma de las normas
+
+  Eso es falso en general, y además es lo que se quiere acotar.
+:::
+
+::: {.paso}
+De $\|\mathbf{u} + \mathbf{v}\|^2 \le (\|\mathbf{u}\| + \|\mathbf{v}\|)^2$ se sigue $\|\mathbf{u} + \mathbf{v}\| \le \|\mathbf{u}\| + \|\mathbf{v}\|$ porque
+
+- de $a^2 \le b^2$ siempre se sigue $a \le b$
+
+  No siempre: $1^2 \le (-2)^2$, pero $1 > -2$. La raíz de $b^2$ es $|b|$, que es $b$ solo si $b \ge 0$.
+- [los dos lados son $\ge 0$]{.correcta}
+:::
+:::
+
+::: {.solucion}
+**Respuesta:** la demostración, con la razón de cada paso.
+
+$$
+\begin{aligned}
+\|\mathbf{u} + \mathbf{v}\|^2 &= \|\mathbf{u}\|^2 + 2\,\mathbf{u} \cdot \mathbf{v} + \|\mathbf{v}\|^2 && \text{distributiva y simétrica} \\
+&\le \|\mathbf{u}\|^2 + 2\,\|\mathbf{u}\|\,\|\mathbf{v}\| + \|\mathbf{v}\|^2 && \text{Cauchy-Schwarz} \\
+&= (\|\mathbf{u}\| + \|\mathbf{v}\|)^2 && \text{cuadrado de una suma}
+\end{aligned}
+$$
+
+Las dos cantidades $\|\mathbf{u} + \mathbf{v}\|$ y $\|\mathbf{u}\| + \|\mathbf{v}\|$ son
+normas o sumas de normas, así que no son negativas, y la raíz cuadrada conserva la desigualdad.
+:::
+
+#### Ejercicio 10 (Avanzado)
+
+Otra demostración de Cauchy-Schwarz. Sean $\mathbf{u}, \mathbf{v}$ con
+$\mathbf{v} \neq \mathbf{0}$, y para cada número $t$ sea
+$f(t) = \|\mathbf{u} - t\,\mathbf{v}\|^2$.
+
+- **(a)** Desarrolla $f(t)$ como un polinomio de grado 2 en $t$.
+- **(b)** ¿Por qué $f(t) \ge 0$ para todo $t$?
+- **(c)** Evalúa $f$ en un $t$ bien escogido para obtener
+  $(\mathbf{u} \cdot \mathbf{v})^2 \le \|\mathbf{u}\|^2\,\|\mathbf{v}\|^2$.
+
+::: {.solucion title="Pista"}
+Para (c), prueba $t = \dfrac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|^2}$, el punto donde la
+parábola $f$ tiene su mínimo. Con ese $t$, $t\,\mathbf{v}$ es la proyección de $\mathbf{u}$ sobre
+la dirección de $\mathbf{v}$.
+:::
+
+::: {.solucion}
+**Respuesta:** $f(t) = \|\mathbf{u}\|^2 - 2t\,(\mathbf{u} \cdot \mathbf{v}) + t^2\,\|\mathbf{v}\|^2$; con $t = \mathbf{u} \cdot \mathbf{v} / \|\mathbf{v}\|^2$ queda $\|\mathbf{u}\|^2 - (\mathbf{u} \cdot \mathbf{v})^2 / \|\mathbf{v}\|^2 \ge 0$.
+
+**(a)** Como $\|\mathbf{x}\|^2 = \mathbf{x} \cdot \mathbf{x}$, con las propiedades del producto
+punto:
+
+$$
+f(t) = (\mathbf{u} - t\,\mathbf{v}) \cdot (\mathbf{u} - t\,\mathbf{v})
+= \|\mathbf{u}\|^2 - 2t\,(\mathbf{u} \cdot \mathbf{v}) + t^2\,\|\mathbf{v}\|^2 .
+$$
+
+**(b)** $f(t)$ es el cuadrado de una norma, y una norma no es negativa.
+
+**(c)** Con $t = \dfrac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{v}\|^2}$, los dos últimos términos
+son $-2\dfrac{(\mathbf{u} \cdot \mathbf{v})^2}{\|\mathbf{v}\|^2} +
+\dfrac{(\mathbf{u} \cdot \mathbf{v})^2}{\|\mathbf{v}\|^2}$, así que
+
+$$
+0 \le f(t) = \|\mathbf{u}\|^2 - \frac{(\mathbf{u} \cdot \mathbf{v})^2}{\|\mathbf{v}\|^2} .
+$$
+
+Multiplicando por $\|\mathbf{v}\|^2 > 0$: $(\mathbf{u} \cdot \mathbf{v})^2 \le
+\|\mathbf{u}\|^2\,\|\mathbf{v}\|^2$, y la raíz cuadrada da
+$|\mathbf{u} \cdot \mathbf{v}| \le \|\mathbf{u}\|\,\|\mathbf{v}\|$. Es la demostración de la
+página de conceptos escrita sin el vector unitario $\mathbf{w}$.
+:::
+
+#### Ejercicio 11 (Avanzado)
+
+Demuestra que si $\mathbf{v} = c\,\mathbf{u}$ para un escalar $c$, la desigualdad de
+Cauchy-Schwarz es una igualdad.
+
+::: {.solucion}
+**Respuesta:** los dos lados valen $|c|\,\|\mathbf{u}\|^2$.
+
+Por la homogeneidad del producto punto y de la norma (L02):
+
+$$
+|\mathbf{u} \cdot (c\,\mathbf{u})| = |c|\,(\mathbf{u} \cdot \mathbf{u}) = |c|\,\|\mathbf{u}\|^2,
+\qquad
+\|\mathbf{u}\|\,\|c\,\mathbf{u}\| = \|\mathbf{u}\|\,|c|\,\|\mathbf{u}\| = |c|\,\|\mathbf{u}\|^2 .
+$$
+
+Lo contrario también vale (la igualdad solo ocurre con vectores paralelos); la página de
+conceptos da la idea en "Para leer después".
+:::
+
+## ¿Coseno o distancia?
+
+#### Ejercicio 12 (Intermedio)
+
+Un buscador recibe la consulta "datos vector", que con el vocabulario ("datos", "vector",
+"matriz", "suma") es $\mathbf{q} = (1, 1, 0, 0)$. Tiene dos documentos: uno largo sobre el mismo
+tema, $\mathbf{a} = (4, 4, 1, 0)$, y uno corto, $\mathbf{b} = (1, 0, 0, 1)$.
+
+- **(a)** Calcula la distancia de $\mathbf{q}$ a cada documento. ¿Cuál está más cerca?
+- **(b)** Calcula la similitud coseno de $\mathbf{q}$ con cada documento. ¿Cuál es más parecido?
+- **(c)** El buscador debe mostrar el documento que trata del tema de la consulta. ¿Cuál medida
+  usarías, y cuál documento muestra?
+
+::: {.solucion}
+**Respuesta:** (a) $\mathbf{b}$, a $\sqrt{2} \approx 1.41$ contra $\sqrt{19} \approx 4.36$; (b) $\mathbf{a}$, $0.985$ contra $0.5$; (c) la similitud coseno: muestra $\mathbf{a}$.
+
+**(a)** $\mathbf{q} - \mathbf{a} = (-3, -3, -1, 0)$ y $\mathbf{q} - \mathbf{b} = (0, 1, 0, -1)$:
+
+$$
+\begin{aligned}
+\sqrt{(-3)^{2} + (-3)^{2} + (-1)^{2} + 0^{2}} &= \sqrt{19} \\
+&\approx 4.36
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\sqrt{0^{2} + 1^{2} + 0^{2} + (-1)^{2}} &= \sqrt{2} \\
+&\approx 1.41
+\end{aligned}
+$$
+
+**(b)** $\|\mathbf{q}\| = \sqrt{2}$, $\|\mathbf{a}\| = \sqrt{33}$ y $\|\mathbf{b}\| = \sqrt{2}$:
+
+$$
+\begin{aligned}
+\frac{1(4) + 1(4) + 0(1) + 0(0)}{\sqrt{2}\,\sqrt{33}} &= \frac{8}{\sqrt{66}} \\
+&\approx 0.985
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\frac{1(1) + 1(0) + 0(0) + 0(1)}{\sqrt{2}\,\sqrt{2}} &= \frac{1}{2}
+\end{aligned}
+$$
+
+**(c)** La pregunta es de qué trata cada documento, no cuánto mide. El documento $\mathbf{a}$
+usa las dos palabras de la consulta en la misma proporción, y está lejos solo porque es largo:
+la similitud coseno lo ve, la distancia no. $\mathbf{b}$ comparte una sola palabra.
+:::
+
+#### Ejercicio 13 (Avanzado)
+
+Una panadería anota lo que compra cada cliente por visita: (panes, litros de leche, docenas de
+huevos). Ana compra $\mathbf{a} = (2, 1, 1)$; Pedro, $\mathbf{p} = (4, 2, 2)$; Quique,
+$\mathbf{q} = (2, 1, 2)$.
+
+- **(a)** Para preparar ofertas de productos, la panadería busca al cliente que compra **la
+  misma combinación** de productos que Ana. ¿Quién es? Justifica con una medida.
+- **(b)** Para preparar los pedidos de cada visita, busca al cliente que compra **las mismas
+  cantidades** que Ana. ¿Quién es? Justifica con una medida.
+
+::: {.solucion}
+**Respuesta:** (a) Pedro, con similitud coseno $1$ contra $\approx 0.953$; (b) Quique, a distancia $1$ contra $\sqrt{6} \approx 2.45$.
+
+**(a)** La combinación es la proporción entre los productos: la dirección del vector, así que
+la medida es la similitud coseno. $\mathbf{p} = 2\mathbf{a}$, de modo que su coseno con
+$\mathbf{a}$ es 1. Para Quique, $\|\mathbf{a}\| = \sqrt{6}$ y $\|\mathbf{q}\| = 3$:
+
+$$
+\begin{aligned}
+\frac{2(2) + 1(1) + 1(2)}{\sqrt{6} \cdot 3} &= \frac{7}{3\sqrt{6}} \\
+&\approx 0.953
+\end{aligned}
+$$
+
+**(b)** Las cantidades son la longitud y la dirección juntas, así que la medida es la
+distancia:
+
+$$
+\begin{aligned}
+\sqrt{(2 - 4)^{2} + (1 - 2)^{2} + (1 - 2)^{2}} &= \sqrt{6} \\
+&\approx 2.45
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\sqrt{(2 - 2)^{2} + (1 - 1)^{2} + (1 - 2)^{2}} &= 1
+\end{aligned}
+$$
+
+Los mismos tres vectores dan dos respuestas distintas: la pregunta decide la medida.
+:::
+
+## Casos especiales y errores comunes
+
+::: {.error-comun title="Radianes leídos como grados"}
+$$
+\begin{aligned}
+\theta &= \arccos\left(\frac{4}{9}\right) \\
+&\approx 1.11^\circ && \text{Incorrecto: 1.11 es el ángulo en radianes}
+\end{aligned}
+$$
+
+La calculadora o `np.arccos` dan el ángulo en radianes, $1.11$. En grados es
+$1.11 \cdot \frac{180}{\pi} \approx 63.6^\circ$, como en el Ejercicio 1.
+:::
+
+::: {.error-comun title="Dividir entre una sola norma al cuadrado"}
+Para $\mathbf{u} = (3, 4)$ y $\mathbf{v} = (2, -1)$, con $\mathbf{u} \cdot \mathbf{v} = 2$:
+
+$$
+\begin{aligned}
+\frac{2}{5\sqrt{5}} &= \frac{2}{5^{2}} && \text{Incorrecto: el denominador es } \|\mathbf{u}\|\,\|\mathbf{v}\| \text{, no } \|\mathbf{u}\|^2
+\end{aligned}
+$$
+
+El coseno es $\frac{2}{5\sqrt{5}} \approx 0.179$, no $\frac{2}{25} = 0.08$: el denominador lleva
+las **dos** normas.
+:::
+
+::: {.error-comun title="Coseno 1 no quiere decir vectores iguales"}
+$(2, 1)$ y $(6, 3)$ tienen similitud coseno 1, pero
+
+$$
+\begin{aligned}
+(2, 1) &= (6, 3) && \text{Incorrecto: tienen la misma dirección, no la misma longitud}
+\end{aligned}
+$$
+
+Coseno 1 dice que $\mathbf{v} = c\,\mathbf{u}$ con $c > 0$. Los vectores están a
+$\|(4, 2)\| = \sqrt{20} \approx 4.47$ de distancia.
+:::
+
+**El vector cero no tiene ángulo.** $\mathbf{0}$ no tiene dirección, y la fórmula del coseno
+divide entre $\|\mathbf{0}\| = 0$. Un texto sin ninguna palabra del vocabulario es el vector
+cero: su similitud coseno con otro texto no está definida.
+
+**Un coseno mayor que 1 es un error de cuenta.** La desigualdad de Cauchy-Schwarz garantiza
+$|\cos\theta| \le 1$ para cualquier par de vectores no nulos. Si sale $1.4$, revisa el producto
+punto y las normas.
