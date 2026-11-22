@@ -19,8 +19,9 @@ componente en su propia línea. Intenta cada ejercicio antes de abrir la soluci�
 #### Ejercicio 1 (Básico)
 
 Sean $\mathbf{u} = (3, -2)$ y $\mathbf{v} = (1, 4)$. Calcula $\mathbf{u} + \mathbf{v}$,
-$3\mathbf{u}$ y $\mathbf{u} - \mathbf{v}$. Después dibuja $\mathbf{u}$, $\mathbf{v}$ y
-$\mathbf{u} + \mathbf{v}$ en el plano, punta con cola.
+$3\mathbf{u}$ y $\mathbf{u} - \mathbf{v}$. Después dibuja en el plano $\mathbf{u}$, $\mathbf{v}$,
+$\mathbf{u} + \mathbf{v}$ (punta con cola) y $\mathbf{u} - \mathbf{v}$ (como la flecha de la punta
+de $\mathbf{v}$ a la de $\mathbf{u}$, y trasladada al origen).
 
 ::: {.solucion}
 **Respuesta:** $\mathbf{u} + \mathbf{v} = (4, 2)$, $3\mathbf{u} = (9, -6)$ y
@@ -57,6 +58,11 @@ $$
 $(1, 4)$. Al poner $\mathbf{v}$ a continuación de $\mathbf{u}$ se llega a $(4, 2)$, la punta de
 $\mathbf{u} + \mathbf{v}$. Los cuatro puntos $(0, 0)$, $(3, -2)$, $(4, 2)$ y $(1, 4)$ son los vértices
 de un paralelogramo, y $\mathbf{u} + \mathbf{v}$ es su diagonal desde el origen.
+
+La resta es la flecha que va de la punta de $\mathbf{v}$, $(1, 4)$, a la punta de $\mathbf{u}$,
+$(3, -2)$: avanza $2$ a la derecha y baja $6$. Trasladada al origen termina en $(2, -6)$, que es
+$\mathbf{u} - \mathbf{v}$. Comprueba el sentido: $\mathbf{v} + (\mathbf{u} - \mathbf{v})$ tiene que
+dar $\mathbf{u}$, y $(1, 4) + (2, -6) = (3, -2)$.
 :::
 
 #### Ejercicio 2 (Intermedio)
@@ -78,15 +84,39 @@ $$
 
 #### Ejercicio 3 (Avanzado)
 
-Sean $\mathbf{p} = (1, 2, 0, -1)$ y $\mathbf{q} = (0, -1, 3, 2)$ en $\mathbb{R}^4$. Calcula
-$-\mathbf{p} + 2\mathbf{q}$.
+Demuestra que, para cualquier escalar $a$ y cualesquiera vectores $\mathbf{u}$ y $\mathbf{v}$ de
+$\mathbb{R}^n$,
+
+$$
+a(\mathbf{u} + \mathbf{v}) = a\mathbf{u} + a\mathbf{v}.
+$$
+
+Un ejemplo con números no basta: la igualdad tiene que valer para todos los vectores.
 
 ::: {.solucion title="Pista"}
-Escribe $-\mathbf{p}$ como $(-1)\mathbf{p}$ y calcula las cuatro componentes por separado.
+Dos vectores son iguales cuando coinciden en cada componente. Escribe la componente $i$ de cada
+lado, para una $i$ cualquiera, y compáralas.
 :::
 
 ::: {.solucion}
-**Respuesta:** $-\mathbf{p} + 2\mathbf{q} = (-1, -4, 6, 5)$
+**Respuesta:** para cada $i$, la componente $i$ de los dos lados es $a u_i + a v_i$; por eso los
+vectores son iguales.
+
+La componente $i$ de $\mathbf{u} + \mathbf{v}$ es $u_i + v_i$, así que la de
+$a(\mathbf{u} + \mathbf{v})$ es $a$ por ese número:
+
+$$
+\begin{aligned}
+a(u_i + v_i) &= a u_i + a v_i && \text{la propiedad distributiva de los números reales}
+\end{aligned}
+$$
+
+Del otro lado, la componente $i$ de $a\mathbf{u}$ es $a u_i$ y la de $a\mathbf{v}$ es $a v_i$, así
+que la de su suma es $a u_i + a v_i$. Las componentes $i$ de los dos lados coinciden, y el
+argumento no dependió de qué $i$ era: vale para $i = 1, \ldots, n$. Los dos vectores son iguales.
+
+Es el mismo camino que la página de conceptos sigue con la propiedad conmutativa: cada propiedad
+de los vectores sale de la propiedad de los números que actúa en cada componente.
 :::
 
 ## Combinaciones lineales
@@ -142,14 +172,50 @@ Las dos componentes coinciden, así que $c = 3$ es la solución.
 
 #### Ejercicio 6 (Avanzado)
 
-Halla el escalar $c$ tal que $c\,(1, 3, -2) + (0, 1, 4) = (2, 7, 0)$.
+- **(a)** Halla los escalares $c$ y $k$ tales que $c\,(2, -1, 3) + (1, 5, -2) = (9, k, 10)$.
+- **(b)** Si el vector de la derecha es $(9, k, 7)$, explica por qué ningún valor de $k$ sirve.
 
 ::: {.solucion title="Pista"}
-Plantea una ecuación por componente. Las tres tienen que dar el mismo $c$.
+La primera componente tiene una sola incógnita, $c$. Con ese $c$, la segunda da $k$, y la
+tercera es una comprobación: las tres componentes tienen que dar el mismo $c$.
 :::
 
 ::: {.solucion}
-**Respuesta:** $c = 2$
+**Respuesta:** (a) $c = 4$ y $k = 1$; (b) la primera y la tercera componentes piden dos
+escalares distintos, y ninguno cumple las dos.
+
+**(a)** La primera componente:
+
+$$
+\begin{aligned}
+2c + 1 &= 9 \\
+2c &= 8 \\
+c &= 4
+\end{aligned}
+$$
+
+Con $c = 4$, la segunda componente da $k$, y la tercera tiene que dar $10$:
+
+$$
+\begin{aligned}
+-1(4) + 5 &= 1 && \text{segunda componente: } k = 1 \\
+3(4) + (-2) &= 10 && \text{tercera componente: coincide}
+\end{aligned}
+$$
+
+**(b)** La primera componente sigue exigiendo $c = 4$. La tercera pide ahora:
+
+$$
+\begin{aligned}
+3c - 2 &= 7 \\
+3c &= 9 \\
+c &= 3
+\end{aligned}
+$$
+
+Un mismo escalar no puede valer $4$ y $3$, así que no existe $c$, sea cual sea $k$: el valor de
+$k$ nunca llega a importar. Una igualdad de vectores exige **todas** las componentes, como en el
+caso especial del final de esta página.
 :::
 
 ## Datos como vectores y el vector media

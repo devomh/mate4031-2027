@@ -132,6 +132,26 @@ paralelogramo y $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$. A la derech
 por un escalar **no cambia la recta** de la flecha: $2\mathbf{u}$ la estira al doble y
 $-\mathbf{u}$ la invierte.
 
+**La resta.** Restar es sumar el opuesto: $\mathbf{u} - \mathbf{v} = \mathbf{u} + (-1)\mathbf{v}$,
+también componente a componente. Con los mismos $\mathbf{u} = (2, 1)$ y $\mathbf{v} = (-1, 3)$:
+
+$$
+\begin{aligned}
+2 - (-1) &= 3 && \text{primera componente} \\
+1 - 3 &= -2 && \text{segunda componente}
+\end{aligned}
+$$
+
+así que $\mathbf{u} - \mathbf{v} = (3, -2)$.
+
+![La resta u - v en el plano.](assets/l01_resta.svg){#fig-resta width="55%" fig-alt="Las flechas u = (2, 1) y v = (-1, 3) salen del origen. Una flecha verde punteada va de la punta de v, (-1, 3), a la punta de u, (2, 1). Una flecha verde sólida, paralela a ella y del mismo largo, va del origen a (3, -2) y lleva la etiqueta u - v = (3, -2)."}
+
+**Cómo leer la figura.** Como $\mathbf{v} + (\mathbf{u} - \mathbf{v}) = \mathbf{u}$, la resta es
+la flecha que, puesta a continuación de $\mathbf{v}$, llega a $\mathbf{u}$: la flecha punteada,
+**de la punta de $\mathbf{v}$ a la punta de $\mathbf{u}$**. Trasladada al origen, es la flecha
+sólida $(3, -2)$. Si $\mathbf{u}$ y $\mathbf{v}$ son dos puntos, $\mathbf{u} - \mathbf{v}$ es el
+desplazamiento que lleva del uno al otro: en la L02 su longitud será la distancia entre ellos.
+
 ::: {.callout-note collapse="true"}
 ## Para leer después: las propiedades de las operaciones
 
@@ -218,13 +238,17 @@ El vector media es $\bar{\mathbf{x}} = (46.0, 198.0)$.
 
 ![Los tres pingüinos como puntos de $\mathbb{R}^2$ y su vector media.](assets/l01_media.svg){#fig-media width="90%" fig-alt="Tres puntos: Adelie en (39.1, 181), Chinstrap en (51.3, 198) y Gentoo en (47.6, 215). Una X negra marca la media en (46.0, 198.0), unida a cada punto por una línea gris."}
 
-**Cómo leer la figura.** La media es el "centro" de los tres puntos: en cada eje es el promedio
-de sus coordenadas. No es ninguno de los tres pingüinos; es una combinación de ellos. Eso
+**Cómo leer la figura.** Con datos, cada observación se dibuja como un **punto**, no como una
+flecha: los datos quedan lejos del origen, y cientos de flechas que salieran de $(0, 0)$ se
+amontonarían unas sobre otras. La media es el "centro" de los tres puntos: en cada eje es el
+promedio de sus coordenadas. No es ninguno de los tres pingüinos; es una combinación de ellos. Eso
 responde la pregunta del principio: el pingüino "promedio" de `df.mean()` es el vector media,
 un punto calculado, no un animal medido.
 
 **Con los 342 pingüinos.** La misma fórmula, con $n = 342$ y las cuatro variables, es lo que
-calcula `X.mean(axis=0)` en el laboratorio:
+calcula `X.mean(axis=0)` en el laboratorio. El argumento `axis=0` dice que se promedia **a lo
+largo de las filas**, hacia abajo en cada columna: sale una media por variable, un vector de
+$\mathbb{R}^4$. (Sin él, NumPy promediaría todos los números de la tabla en uno solo.)
 
 ```python
 media = X.mean(axis=0)   # la media de cada columna: el vector media
@@ -285,9 +309,22 @@ parte de esos datos centrados.
 ## Ejercicios
 
 - La [página de ejercicios](l01_exercises_vectores_datos.qmd) tiene más operaciones,
-  combinaciones lineales y vectores media resueltos paso a paso, con los casos especiales.
+  combinaciones lineales y vectores media resueltos paso a paso, una primera demostración y los
+  casos especiales.
 - En el [laboratorio](l01_lab_vectores_datos.md) haces los cálculos con NumPy sobre los 342
   pingüinos y llevas la idea a otro tipo de datos: textos convertidos en vectores.
+
+## Resumen
+
+| Notación | Qué significa | NumPy |
+|---|---|---|
+| $\mathbf{x} = (x_1, \ldots, x_n)$ | un vector de $\mathbb{R}^n$: un punto, o una flecha desde el origen | `np.array([2, 1])` |
+| $X$, de forma $(n, p)$ | la matriz de datos: una fila por observación, una columna por variable | `X.shape`, `X[0]`, `X[:, 2]` |
+| $\mathbf{u} + \mathbf{v}$ | componente a componente; la diagonal del paralelogramo (punta con cola) | `u + v` |
+| $c\,\mathbf{u}$ | estira, encoge o invierte la flecha, sin cambiar su recta | `c * u` |
+| $\mathbf{u} - \mathbf{v}$ | la flecha de la punta de $\mathbf{v}$ a la punta de $\mathbf{u}$ | `u - v` |
+| $c_1\mathbf{v}_1 + \cdots + c_k\mathbf{v}_k$ | una combinación lineal: un camino de flechas | `2 * u + v` |
+| $\bar{\mathbf{x}} = \frac{1}{n}(\mathbf{x}_1 + \cdots + \mathbf{x}_n)$ | el vector media: la combinación lineal con coeficientes $1/n$, el centro de los puntos | `X.mean(axis=0)` |
 
 ## Ideas clave
 

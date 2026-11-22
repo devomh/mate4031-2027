@@ -258,9 +258,6 @@ vector media: [  43.9   17.2  200.9 4201.8]
 ~~~
 </details>
 
-La figura aparece al ejecutar la celda en Colab; la vista de solo lectura del sitio muestra solo
-la salida de texto.
-
 **Cómo leer la figura.** Cada especie forma su propia nube, y la media cae entre las nubes,
 donde hay pocos pingüinos. La media resume la tabla, pero no describe a un pingüino típico de
 ninguna especie: es un punto calculado, no un animal medido.
@@ -320,10 +317,15 @@ cuenta cuántas veces aparece cada palabra del vocabulario. Comprueba que el vec
 unido `d1 + " " + d2` es la suma de los vectores de `d1` y `d2`, y calcula `3 * conteos(d1)`.
 ¿Qué texto tendría ese vector?
 
+Por último, junta los vectores de `d1`, `d2` y `d3` en una matriz `T`, una fila por texto, con
+`np.array([conteos(d1), conteos(d2), conteos(d3)])`. Imprime su forma, la matriz y su vector
+media redondeado a dos decimales. ¿Qué dice cada componente del vector media?
+
 ```python
 vocabulario = ["vector", "datos", "matriz", "suma"]
 d1 = "una matriz de datos tiene un vector de datos por fila"
 d2 = "la suma de un vector y otro vector es un vector"
+d3 = "una suma de datos y una matriz"
 
 
 def conteos(texto):
@@ -333,6 +335,8 @@ def conteos(texto):
 
 # TODO: imprime conteos(d1), conteos(d2), conteos(d1 + " " + d2) y conteos(d1) + conteos(d2),
 # compara los dos ultimos con np.array_equal, e imprime 3 * conteos(d1)
+# Despues: T = np.array([conteos(d1), conteos(d2), conteos(d3)]); imprime T.shape, T y
+# np.round(T.mean(axis=0), 2)
 ```
 
 <!-- #region -->
@@ -345,11 +349,18 @@ texto unido: [4 2 1 1]
 suma de vectores: [4 2 1 1]
 iguales: True
 3 * d1: [3 6 3 0]
+T: (3, 4)
+[[1 2 1 0]
+ [3 0 0 1]
+ [0 1 1 1]]
+media por palabra: [1.33 1.   0.67 0.67]
 ~~~
 
 Unir dos textos suma sus conteos, palabra por palabra: la suma de vectores tiene un significado
 concreto. `3 * conteos(d1)` es el vector de `d1` repetido tres veces. Una colección de textos es
-una matriz de datos con una fila por texto y una columna por palabra.
+una matriz de datos con una fila por texto y una columna por palabra, y su vector media dice
+cuántas veces aparece cada palabra, en promedio, por texto: "vector", 1.33 veces; "datos", una.
+Es la misma combinación lineal que con los pingüinos, con coeficientes $1/3$.
 </details>
 <!-- #endregion -->
 

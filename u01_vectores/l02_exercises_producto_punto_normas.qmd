@@ -70,16 +70,50 @@ Comprobación: $(2, 2, -1) \cdot (3, 2, 4) = 6 + 4 - 4 = 6$.
 
 #### Ejercicio 3 (Avanzado)
 
-Sean $\mathbf{p} = (1, 0, -1, 2)$ y $\mathbf{q} = (3, 5, 2, -1)$ en $\mathbb{R}^4$. Calcula
-$\mathbf{p} \cdot \mathbf{q}$ y $\|\mathbf{p}\|^2$.
+De dos vectores $\mathbf{u}$ y $\mathbf{v}$ no conoces las componentes, solo que
+$\|\mathbf{u}\| = 3$, $\|\mathbf{v}\| = 4$ y $\mathbf{u} \cdot \mathbf{v} = 2$. Calcula
+$\|\mathbf{u} + \mathbf{v}\|^2$ y $\|\mathbf{u} - \mathbf{v}\|^2$.
 
 ::: {.solucion title="Pista"}
-Son cuatro productos; el que lleva el $0$ no aporta nada. Para $\|\mathbf{p}\|^2$ no hace falta
-ninguna raíz: es $\mathbf{p} \cdot \mathbf{p}$.
+Escribe $\|\mathbf{u} + \mathbf{v}\|^2$ como $(\mathbf{u} + \mathbf{v}) \cdot (\mathbf{u} +
+\mathbf{v})$ y desarrolla con la propiedad distributiva, como un binomio al cuadrado. La propiedad
+simétrica junta los dos términos cruzados.
 :::
 
 ::: {.solucion}
-**Respuesta:** $\mathbf{p} \cdot \mathbf{q} = -1$ y $\|\mathbf{p}\|^2 = 6$.
+**Respuesta:** $\|\mathbf{u} + \mathbf{v}\|^2 = 29$ y $\|\mathbf{u} - \mathbf{v}\|^2 = 21$.
+
+La norma al cuadrado es el producto punto de un vector consigo mismo. Al desarrollar,
+
+$$
+\begin{aligned}
+\|\mathbf{u} + \mathbf{v}\|^2 &= (\mathbf{u} + \mathbf{v}) \cdot (\mathbf{u} + \mathbf{v}) \\
+&= \mathbf{u} \cdot \mathbf{u} + \mathbf{u} \cdot \mathbf{v} + \mathbf{v} \cdot \mathbf{u} + \mathbf{v} \cdot \mathbf{v} && \text{distributiva, dos veces} \\
+&= \|\mathbf{u}\|^2 + 2\,\mathbf{u} \cdot \mathbf{v} + \|\mathbf{v}\|^2 && \text{simétrica}
+\end{aligned}
+$$
+
+y con los datos:
+
+$$
+\begin{aligned}
+3^2 + 2(2) + 4^2 &= 29
+\end{aligned}
+$$
+
+Con $\mathbf{u} - \mathbf{v}$ el desarrollo es el mismo, pero el término cruzado cambia de signo:
+$\|\mathbf{u} - \mathbf{v}\|^2 = \|\mathbf{u}\|^2 - 2\,\mathbf{u} \cdot \mathbf{v} +
+\|\mathbf{v}\|^2$, y
+
+$$
+\begin{aligned}
+3^2 - 2(2) + 4^2 &= 21
+\end{aligned}
+$$
+
+Una comprobación: la suma de los dos resultados, $29 + 21 = 50$, es
+$2(\|\mathbf{u}\|^2 + \|\mathbf{v}\|^2) = 2(9 + 16)$, porque los términos cruzados se cancelan.
+No hizo falta ninguna componente: bastaron las propiedades del producto punto.
 :::
 
 ## Normas y distancias
@@ -340,6 +374,80 @@ acuerdo, así que hay que escoger. Para el pronóstico, un error fijo se corrige
 día con 10 grados de error es justo lo que no se puede tolerar: la pregunta es "¿cuál fue la
 peor diferencia?", la norma $\ell_\infty$, y la estación que conviene es C. La norma $\ell_1$
 llevaría a escoger B, porque sus muchos días casi iguales compensan el día malo.
+:::
+
+## Las unidades deciden
+
+#### Ejercicio 12 (Intermedio)
+
+Un banco describe a cada cliente con un vector: la edad (en años) y el ingreso anual (en
+dólares). Tres clientes:
+
+- A: $30$ años, $52000$ dólares;
+- B: $45$ años, $52500$ dólares;
+- C: $32$ años, $58000$ dólares.
+
+Responde:
+
+- **(a)** Con el ingreso en dólares, ¿cuál de los clientes B y C está más cerca de A, en la
+  distancia $\ell_2$?
+- **(b)** Repite la pregunta con el ingreso en miles de dólares ($52000$ dólares son $52$).
+- **(c)** ¿Por qué cambió la respuesta? ¿Cuál de las dos es "la correcta"?
+
+::: {.solucion title="Pista"}
+Resta A de cada cliente y mira el tamaño de cada componente de la diferencia antes de calcular
+nada: ¿cuál domina la suma de cuadrados?
+:::
+
+::: {.solucion}
+**Respuesta:** (a) B; (b) C; (c) la variable con los números más grandes decide la distancia, y
+cambiar su unidad cambia cuál es; ninguna de las dos respuestas es la correcta.
+
+**(a)** En dólares, las diferencias con A son $(15, 500)$ para B y $(2, 6000)$ para C. La
+distancia de A a B:
+
+$$
+\begin{aligned}
+\sqrt{15^2 + 500^2} &= \sqrt{250225} \\
+&\approx 500.22
+\end{aligned}
+$$
+
+y la de A a C:
+
+$$
+\begin{aligned}
+\sqrt{2^2 + 6000^2} &= \sqrt{36000004} \\
+&\approx 6000.00
+\end{aligned}
+$$
+
+B está más cerca: tiene casi el mismo ingreso, aunque le lleva 15 años a A.
+
+**(b)** En miles de dólares, las diferencias son $(15, 0.5)$ para B y $(2, 6)$ para C:
+
+$$
+\begin{aligned}
+\sqrt{15^2 + 0.5^2} &= \sqrt{225.25} \\
+&\approx 15.01
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+\sqrt{2^2 + 6^2} &= \sqrt{40} \\
+&\approx 6.32
+\end{aligned}
+$$
+
+Ahora C está más cerca.
+
+**(c)** En dólares, las diferencias de ingreso son de cientos o miles y las de edad, de unidades
+o decenas: el ingreso decide casi solo, y el vecino es el de ingreso parecido. En miles de
+dólares, los dos tipos de diferencia son de tamaño parecido y la edad cuenta: C, con dos años de
+diferencia, queda más cerca que B, con quince. Ninguna respuesta es "la correcta": cada una
+depende de una unidad que alguien escogió, como con los pingüinos en gramos y en kilogramos. La
+manera de quitar esa dependencia, estandarizar cada variable, es el tema de la L04.
 :::
 
 ## Casos especiales y errores comunes

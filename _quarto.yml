@@ -33,5 +33,6 @@ format:
     filters:
       - assets/drop-title-heading.lua
       - assets/exercise-blocks.lua
+      - assets/lab-figures.lua
 execute:
   freeze: auto

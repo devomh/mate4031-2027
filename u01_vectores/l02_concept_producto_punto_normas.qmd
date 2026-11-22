@@ -207,12 +207,12 @@ desigualdad de Cauchy-Schwarz, y la demostración es de la L03. Ojo: es una desi
 y $\mathbf{v} = (2, -1)$, $\|\mathbf{u} + \mathbf{v}\| = \|(5, 3)\| = \sqrt{34} \approx 5.83$, pero
 $\|\mathbf{u}\| + \|\mathbf{v}\| = 5 + \sqrt{5} \approx 7.24$.
 
-![Los vectores de norma 1 en las tres normas.](assets/l02_bolas.svg){#fig-bolas width="60%" fig-alt="En el plano, tres curvas cerradas: un rombo naranja con vértices en (1, 0), (0, 1), (-1, 0) y (0, -1), los vectores con norma l1 igual a 1; un círculo azul de radio 1, norma l2 igual a 1; y un cuadrado verde con vértices en (1, 1), (-1, 1), (-1, -1) y (1, -1), norma l infinito igual a 1."}
+![Los vectores de norma 1 en las tres normas.](assets/l02_bolas.svg){#fig-bolas width="60%" fig-alt="En el plano, tres curvas cerradas: un rombo naranja con vértices en (1, 0), (0, 1), (-1, 0) y (0, -1), los vectores con norma l1 igual a 1; un círculo azul de radio 1, norma l2 igual a 1; y un cuadrado verde con vértices en (1, 1), (-1, 1), (-1, -1) y (1, -1), norma l infinito igual a 1. Un punto negro marca (1, 1), una esquina del cuadrado, unida al origen por una línea punteada que cruza primero el rombo y después el círculo."}
 
 **Cómo leer la figura.** Cada curva reúne los vectores de norma exactamente 1. Es el borde de
 la **bola unitaria** (*unit ball*) de esa norma: los vectores con norma menor o igual que 1, la
 región que la curva encierra. Las tres pasan por $(1, 0)$ y $(0, 1)$: en los ejes, todas las normas coinciden.
-Lejos de los ejes difieren. El vector $(1, 1)$ está en el cuadrado ($\ell_\infty = 1$), fuera del
+Lejos de los ejes difieren. El vector $(1, 1)$, el punto negro, está en el cuadrado ($\ell_\infty = 1$), fuera del
 círculo ($\ell_2 = \sqrt{2}$) y más fuera aún del rombo ($\ell_1 = 2$). Para un mismo vector,
 siempre $\|\mathbf{v}\|_\infty \le \|\mathbf{v}\|_2 \le \|\mathbf{v}\|_1$. La primera
 desigualdad vale porque el mayor $v_i^2$ no pasa de la suma de todos los $v_i^2$. La segunda,
@@ -224,7 +224,10 @@ cruzados $2|v_i|\,|v_j|$, que no son negativos: $\|\mathbf{v}\|_1^2 \ge \|\mathb
 Cada pingüino es un vector de $\mathbb{R}^4$ (L01): largo y profundidad del pico (mm), largo de
 la aleta (mm) y masa (g). El **vecino más cercano** (*nearest neighbor*) de un pingüino es el
 pingüino a menor distancia. En el laboratorio lo buscas para el primer pingüino de la tabla, un
-Adelie con $(39.1, 18.7, 181, 3750)$:
+Adelie con $(39.1, 18.7, 181, 3750)$. El código usa dos herramientas de NumPy. `X - X[0]` resta
+el vector `X[0]` de **cada fila** de `X`: NumPy repite el vector a lo largo de las filas, una
+regla llamada **difusión** (*broadcasting*). Y con `axis=1`, `np.linalg.norm` calcula la norma
+de cada fila por separado: sale una distancia por pingüino.
 
 ```python
 d = np.linalg.norm(X - X[0], axis=1)   # la distancia de cada pinguino al primero
@@ -274,9 +277,7 @@ esa dependencia, estandarizar cada variable, es el tema de la L04.
   dimensión).
 - `np.linalg.norm(v)` es la norma $\ell_2$; `np.linalg.norm(v, ord=1)` y
   `np.linalg.norm(v, ord=np.inf)` son las normas $\ell_1$ y $\ell_\infty$.
-- `X - X[0]` resta el vector `X[0]` de **cada fila** de `X`: NumPy repite el vector a lo largo
-  de las filas. Esa regla se llama **difusión** (*broadcasting*).
-- `np.linalg.norm(M, axis=1)` calcula la norma de cada fila de `M`: una distancia por pingüino.
+- La difusión y `axis=1`, que usa la sección 5, se explican allí.
 
 ## Errores comunes
 
@@ -301,10 +302,21 @@ pregunta.
 ## Ejercicios
 
 - La [página de ejercicios](l02_exercises_producto_punto_normas.qmd) tiene productos punto,
-  normas y distancias resueltos paso a paso, las demostraciones de las propiedades y una sección
-  para escoger la norma.
+  normas y distancias resueltos paso a paso, las demostraciones de las propiedades, una sección
+  para escoger la norma y un vecino más cercano a mano, en dos unidades.
 - En el [laboratorio](l02_lab_producto_punto_normas.md) calculas las distancias entre los 342
   pingüinos, verificas que el vecino cambia con las unidades y buscas el pingüino más "típico".
+
+## Resumen
+
+| Notación | Qué significa | NumPy |
+|---|---|---|
+| $\mathbf{u} \cdot \mathbf{v} = u_1 v_1 + \cdots + u_n v_n$ | un número, una suma ponderada; $\mathbf{v} \cdot \mathbf{v} = \|\mathbf{v}\|^2$ | `u @ v`, `np.dot(u, v)` |
+| $\|\mathbf{v}\|_2 = \sqrt{v_1^2 + \cdots + v_n^2}$ | la longitud de la flecha (Pitágoras) | `np.linalg.norm(v)` |
+| $\|\mathbf{v}\|_1 = \lvert v_1 \rvert + \cdots + \lvert v_n \rvert$ | la diferencia total, componente por componente | `np.linalg.norm(v, ord=1)` |
+| $\|\mathbf{v}\|_\infty = \max(\lvert v_1 \rvert, \ldots, \lvert v_n \rvert)$ | la peor diferencia en una sola componente | `np.linalg.norm(v, ord=np.inf)` |
+| $\mathbf{v} / \|\mathbf{v}\|$ | el vector unitario con la dirección de $\mathbf{v}$ | `v / np.linalg.norm(v)` |
+| $d(\mathbf{u}, \mathbf{v}) = \|\mathbf{u} - \mathbf{v}\|$ | la distancia; entre observaciones, depende de las unidades | `np.linalg.norm(X - X[0], axis=1)` |
 
 ## Ideas clave
 

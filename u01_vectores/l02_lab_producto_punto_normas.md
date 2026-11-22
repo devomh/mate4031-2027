@@ -20,7 +20,7 @@ conceptos [Producto punto, normas y distancias](l02_concept_producto_punto_norma
 
 ## Preparación
 
-Este laboratorio no instala nada: Colab ya trae NumPy y pandas. La celda de preparación importa
+Este laboratorio no instala nada: Colab ya trae NumPy, pandas y Matplotlib. La celda de preparación importa
 las bibliotecas, fija la semilla y carga los datos: los pingüinos de Palmer (licencia CC0), la
 misma copia de la L01. Ejecútala cada vez que abras el laboratorio.
 
@@ -30,6 +30,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import matplotlib.pyplot as plt
 
 rng = np.random.default_rng(4031)
 
@@ -263,16 +264,46 @@ El vecino cambió: ahora es un pingüino con la misma aleta (181 mm) y un pico c
 pesa 125 g menos.
 <!-- #endregion -->
 
+La figura muestra los 342 pingüinos en dos de sus cuatro variables, el largo de la aleta y la
+masa, y marca el pingüino 0 y sus dos vecinos.
+
+```python
+fig, ax = plt.subplots(figsize=(7, 5))
+for nombre, color in [("Adelie", "tab:blue"), ("Chinstrap", "tab:orange"),
+                      ("Gentoo", "tab:green")]:
+    filas = X[especie == nombre]
+    ax.scatter(filas[:, 2], filas[:, 3], s=12, alpha=0.35, color=color, label=nombre)
+ax.scatter(X[0, 2], X[0, 3], s=120, color="black", label="pinguino 0")
+ax.scatter(X[vecino, 2], X[vecino, 3], s=120, marker="s", facecolors="none",
+           edgecolors="black", linewidths=2, label="vecino en gramos")
+ax.scatter(X[vecino_kg, 2], X[vecino_kg, 3], s=120, marker="^", facecolors="none",
+           edgecolors="black", linewidths=2, label="vecino en kilogramos")
+ax.set_xlabel("largo de la aleta (mm)")
+ax.set_ylabel("masa (g)")
+ax.legend(fontsize=9)
+plt.show()
+```
+
+**Cómo leer la figura.** El vecino en gramos, el cuadrado, está a la misma altura que el
+pingüino 0: tiene la misma masa, aunque su aleta mide 12 mm más. El vecino en kilogramos, el
+triángulo, está justo debajo: tiene la misma aleta y pesa 125 g menos. Cada unidad escoge como
+vecino al pingüino que se parece en la variable que domina la distancia. La figura misma también
+escogió escalas para sus ejes: en ella el triángulo parece más cerca que el cuadrado, porque el
+eje de la masa encoge 125 g a una distancia corta. Ninguna de las tres miradas es "la correcta".
+
 ¿Pasa solo con este pingüino? La función `vecinos` busca el vecino más cercano de **todos** los
-pingüinos a la vez: calcula la tabla de distancias entre cada par (342 por 342), pone infinito en
-la diagonal para que nadie sea su propio vecino y toma el mínimo de cada fila. Completa las dos
-líneas marcadas, quita los `#` y ejecuta.
+pingüinos: para cada pingüino `i` repite el cálculo del Paso 3 con `M - M[i]`, pone infinito
+(`np.inf`) en su propia distancia para que nadie sea su propio vecino y guarda el índice de la
+menor distancia (`argmin`). Completa las dos líneas marcadas, quita los `#` y ejecuta.
 
 ```python
 def vecinos(M):
-    D = np.linalg.norm(M[:, None, :] - M[None, :, :], axis=2)
-    np.fill_diagonal(D, np.inf)
-    return D.argmin(axis=1)
+    resultado = []
+    for i in range(len(M)):
+        d = np.linalg.norm(M - M[i], axis=1)   # el Paso 3, para el pinguino i
+        d[i] = np.inf                          # nadie es su propio vecino
+        resultado.append(d.argmin())
+    return np.array(resultado)
 
 
 # v_g = vecinos(X)
