@@ -227,16 +227,19 @@ pingüino a menor distancia. En el laboratorio lo buscas para el primer pingüin
 Adelie con $(39.1, 18.7, 181, 3750)$. El código usa dos herramientas de NumPy. `X - X[0]` resta
 el vector `X[0]` de **cada fila** de `X`: NumPy repite el vector a lo largo de las filas, una
 regla llamada **difusión** (*broadcasting*). Y con `axis=1`, `np.linalg.norm` calcula la norma
-de cada fila por separado: sale una distancia por pingüino.
+de cada fila por separado: sale una distancia por pingüino. El arreglo `especie` guarda la especie
+de cada pingüino.
 
 ```python
 d = np.linalg.norm(X - X[0], axis=1)   # la distancia de cada pinguino al primero
 vecino = np.argsort(d)[1]               # [0] es el mismo pinguino, a distancia 0
-print("vecino mas cercano:", vecino, X[vecino], "distancia:", round(d[vecino], 2))
+print("vecino mas cercano:", vecino, X[vecino], especie[vecino])
+print("distancia:", round(d[vecino], 2))
 ```
 
 ~~~text
-vecino mas cercano: 148 [  37.8   18.1  193.  3750. ] distancia: 12.09
+vecino mas cercano: 148 [  37.8   18.1  193.  3750. ] Adelie
+distancia: 12.09
 ~~~
 
 El vecino tiene **la misma masa**, 3750 g, aunque su aleta mide 12 mm más. Las diferencias en
@@ -255,11 +258,13 @@ X_kg = X.copy()
 X_kg[:, 3] = X[:, 3] * 0.001           # la masa, de gramos a kilogramos
 d_kg = np.linalg.norm(X_kg - X_kg[0], axis=1)
 vecino_kg = np.argsort(d_kg)[1]
-print("vecino en kg:", vecino_kg, X[vecino_kg], "distancia:", round(d_kg[vecino_kg], 2))
+print("vecino en kg:", vecino_kg, X[vecino_kg], especie[vecino_kg])
+print("distancia:", round(d_kg[vecino_kg], 2))
 ```
 
 ~~~text
-vecino en kg: 5 [  38.9   17.8  181.  3625. ] distancia: 0.93
+vecino en kg: 5 [  38.9   17.8  181.  3625. ] Adelie
+distancia: 0.93
 ~~~
 
 Ahora el vecino tiene la misma aleta (181 mm) y un pico casi igual. Con los 342 pingüinos, el
